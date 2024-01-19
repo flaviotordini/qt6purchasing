@@ -17,7 +17,8 @@ class AbstractStoreBackend : public QObject
 public:
     static AbstractStoreBackend * instance() { return _instance; }
     QQmlListProperty<AbstractProduct> productsQml() { return {this, &_products}; }
-    QList<AbstractProduct *> products() { return _products; }
+    QList<AbstractProduct *> &products() { return _products; }
+    void addProduct(AbstractProduct *product) { _products << product; }
     AbstractProduct * product(const QString &identifier);
     bool isConnected() const { return _connected; }
 
